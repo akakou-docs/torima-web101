@@ -16,5 +16,5 @@ services:
     env_file:
       - ./torima/secret.env
     ports:
-      - "8080:8080"
+      - "XXXXX:8080" # ここ
 
