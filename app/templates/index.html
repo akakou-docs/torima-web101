@@ -5,24 +5,32 @@
 <body>
     <h1>N-chan</h1>
 
-    <h2>Post</h2>
-    <form action='/post' method='post'>
+    <h2>New</h2>
+    <form action='/new' method='post'>
         <input name='content'></input>
         <button>Post</button>
     </form>
 
+
+
+
     <h2>All Posts</h2>
 
     {% for post in posts %}
+        <b>
+            {{loop.index}}: {{post['user_id']}}
+        </b>
 
-    <b>
-        {{post['user_id']}}
-    </b>
-
-    <blockquote>
-        {{post['content']}}
-    </blockquote>
-    <br />
+        <blockquote>
+            {{post['content']}}
+        </blockquote>
+        <br />
+        {% if post['user_id'] == user_id %}
+            <form action='/delete' method='post'>
+                <input name='content' type="hidden" value="{{loop.index -1}}" ></input>
+                <button>Delete</button>
+            </form>
+        {% endif %}
     {% endfor %}
 
 </body>

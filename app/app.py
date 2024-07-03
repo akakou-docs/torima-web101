@@ -17,12 +17,17 @@ def authenticate():
 
     return hashed_id
 
+@app.route("/_torima/back", methods=['GET'])
+def back():
+    return redirect('/')
+
 
 @app.route("/", methods=['GET'])
 def show_posts():
-    return render_template('index.html', posts=posts)
+    user_id = authenticate()
+    return render_template('index.html', posts=posts, user_id=user_id)
 
-@app.route("/post", methods=['POST'])
+@app.route("/new", methods=['POST'])
 def create_post():
     user_id = authenticate()
 
@@ -32,12 +37,22 @@ def create_post():
         'user_id': user_id
     })
 
-    return render_template('index.html', posts=posts)
+    return render_template('index.html', posts=posts, user_id=user_id)
 
 
-@app.route("/_torima/back", methods=['GET'])
-def back():
-    return redirect('/')
+@app.route("/delete", methods=['POST'])
+def delete_post():
+    user_id = authenticate()
+    content_id = int(request.form["content"])
+
+    port = posts[content_id]
+
+    if port['user_id'] == user_id:
+        del posts[content_id]
+        return render_template('index.html', posts=posts, user_id=user_id)
+    else:
+        return "authentication failed"
+
 
 if __name__ == "__main__":
     app.run(

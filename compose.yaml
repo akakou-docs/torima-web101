@@ -4,6 +4,8 @@ services:
     build: ./app
     volumes:
       - "./app:/app"
+    environment:
+      - PYTHONUNBUFFERED=1
 
   proxy:
     image: ghcr.io/ochanoco/torima:develop

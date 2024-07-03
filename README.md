@@ -37,7 +37,7 @@ ngrok http ポート番号
 torima/config.yaml
 
 ```yaml
-host: https://example.ngrok-free.app/ # ここを書き換える
+host: http://localhost:8080/ # ここを書き換える
 
 port: 8080
 
