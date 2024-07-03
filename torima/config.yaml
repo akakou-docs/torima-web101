@@ -1,3 +1,5 @@
+host: https://example.ngrok-free.app/ # ここを書き換える
+
 port: 8080
 
 default_origin: app:5000

@@ -8,13 +8,13 @@ services:
   proxy:
     image: ghcr.io/ochanoco/torima:develop
     volumes:
-      - "./proxy/data:/workspace/data"
-      - "./proxy/config.yaml:/workspace/config.yaml"
+      - "./torima/data:/workspace/data"
+      - "./torima/config.yaml:/workspace/config.yaml"
     environment:
       - TORIMA_DB_TYPE=sqlite3
       - TORIMA_DB_CONFIG=file:./data/db.sqlite3?_fk=1
     env_file:
-      - ./proxy/secret.env
+      - ./torima/secret.env
     ports:
       - "8080:8080"
 
