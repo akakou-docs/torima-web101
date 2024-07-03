@@ -1,0 +1,8 @@
+port: 8080
+
+default_origin: app:5000
+
+skip_auth_list:
+  - "/favicon.ico"
+
+scheme: http
